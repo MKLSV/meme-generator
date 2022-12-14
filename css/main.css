@@ -49,19 +49,34 @@ canvas {
     height: 90vh;
     gap: 25px;
 }
-.canvas-panel{
+.control-box{
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 10px;
+    /* justify-content: space-between; */
     /* position: fixed; */
-    padding: 5px;
-    height: 30px;
+    padding: 15px;
     background-color: rgb(240, 240, 240);
-    width: 50%;
-    margin: auto;
-    margin-bottom: 10px;
+    width: 300px;
     box-shadow: 0 1px 2px black;
 }
+.lines-options{
+    gap: 20px;
+}
 
+.text-input{
+    font-size: x-large;
+    width: 100%;
+}
+
+
+/* HELPERS */
 .flex{
     display: flex;
+}
+.space-a{
+    justify-content: space-around;
+}
+.space-b{
+    justify-content: space-between;
 }
