@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +8,8 @@
     <link rel="stylesheet" href="css/main.css">
     <title>Document</title>
 </head>
-<body>
+
+<body onload="onInit()">
     <header class="header flex">
         <div class="logo">MEMEGENERATOR</div>
         <nav class="main-nav">
@@ -16,19 +18,27 @@
             <button class="about-btn">About</button>
         </nav>
     </header>
-    <div class="image-gallery-container flex">
-        <div class="search-panel">
-            <input type="text" placeholder = "SEARCH..." name="search"> 
+    <div class="image-gallery">
+        <div class="search-panel flex">
+            <div class="search">
+                <input type="text" placeholder="SEARCH..." name="search">
+            </div>
+            <div class="filter-options">
+                <a>funny</a>
+                <a>men</a>
+                <a>women</a>
+                <a>animals</a>
+                <a>funny</a>
+                <a>men</a>
+                <a>women</a>
+                <a>animals</a>
+                <a href="#">...more</a>
+            </div>
         </div>
-        <div class="filter-options">
-            <a>funny</a>
-            <a>men</a>
-            <a>women</a>
-            <a>animals</a>
-            <a href="#">...more</a>
-        </div>
-        <div class="image-gallery"></div>
+        <section class="gallery-container flex">
+        </section>
     </div>
     <script src="js/main.js"></script>
 </body>
+
 </html>

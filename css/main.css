@@ -9,11 +9,24 @@ header{
     background-color: aquamarine;
     padding: 20px;
 }
-.image-gallery-container{
-    justify-content: space-around;
-    padding: 20px;
+.image-gallery{
+    padding: 0 50px;
 }
+.search-panel{
+    gap: 15px;
+    padding: 20px 0;
+}
+.gallery-container{
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 10px 0;
+}
+.image-preview{
+    width: 250px;
+    height: 200px;
+    cursor: pointer;
+}
+
 .flex{
     display: flex;
 }
-
