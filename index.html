@@ -38,7 +38,24 @@
         <section class="gallery-container flex">
         </section>
     </div>
+    <div class="canvas-container">
+        <canvas id="my-canvas" height="550" width="550" onclick="draw(event)"></canvas>
+        <div class="canvas-panel">
+            <input type="color" oninput="strokeColor(this.value)" class="color bgc-color" value="#000000" />
+            <input type="color" oninput="fillColor(this.value)" class="color shape-color" value="#FFFFFF" /><br>
+            <select class="shapes" onchange="setShape(this.value)">
+                <option value="square">SQUARES</option>
+                <option value="triangle">Triangle</option>
+                <option value="line">Line</option>
+                <option value="circle">Circle</option>
+              </select>
+            <a href='#' class="btn save" onclick="onSave(this)" download="my-img" >Save</a>
+            <a href='#' class="btn clear" onclick="onClear()">Clear</a>
+        </div>
+        </div>
     <script src="js/main.js"></script>
+    <script src="js/canvas-controler.js"></script>
+
 </body>
 
 </html>
