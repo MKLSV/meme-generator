@@ -15,3 +15,13 @@ function onCanvas(image) {
     document.querySelector('.canvas-container').style.display = "flex"
     canvas(image)
 }
+
+function onClear() {
+    document.querySelector('.text-input').value = ''
+    clear()
+}
+
+function onDownload(elLink) {
+    const data = gElCanvas.toDataURL('image.img')
+    elLink.href = data
+}

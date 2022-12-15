@@ -39,7 +39,7 @@
         </section>
     </div>
     <div class="canvas-container">
-        <canvas id="my-canvas" height="550" width="550" onclick="drawRect(event)"></canvas>
+        <canvas id="my-canvas" height="550" width="550"></canvas>
         <div class="control-box">
             <input type="text" oninput="setText(this.value)" class="panel text-input" placeholder="Text Line" />
             <div class="lines-options flex space-a">
@@ -53,8 +53,8 @@
             </div>
             <div class="text-options flex">
                 <div class="text-operations">
-                    <button class="text-option-btn increase-size">A+</button>
-                    <button class="text-option-btn decrease-size">A-</button>
+                    <button class="text-option-btn increase-size" onclick="increaseFont()">A+</button>
+                    <button class="text-option-btn decrease-size" onclick="decreaseFont()">A-</button>
                     <button class="text-option-btn text-color">🌈</button>
                 </div>
                 <div class="align-operations">
@@ -79,6 +79,7 @@
     </div>
     <script src="js/main.js"></script>
     <script src="js/canvas-controler.js"></script>
+    <script src="js/line-control.js"></script>
 
 </body>
 
