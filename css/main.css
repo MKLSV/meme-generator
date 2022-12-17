@@ -6,10 +6,12 @@ body{
 }
 header{
     justify-content: space-between;
-    background-color: aquamarine;
+    background-color: orange;
     padding: 20px;
 }
+.nav-btn{
 
+}
 /* GALLERY CONTAINER */
 
 .image-gallery{

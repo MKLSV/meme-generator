@@ -11,11 +11,13 @@
 
 <body onload="onInit()">
     <header class="header flex">
-        <div class="logo"> <a href="index.html">MEMEGENERATOR</a></div>
+        <div class="logo">
+             <a href="index.html"> <img src="LOGO/logo3.png" alt="MEMEGENERATOR" width=250px height=35px href="index.html"></a>
+            </div>
         <nav class="main-nav">
-            <button class="gallery-btn">Gallery</button>
-            <button class="memes-btn">Memes</button>
-            <button class="about-btn">About</button>
+            <button class="gallery-btn nav-btn">Gallery</button>
+            <button class="memes-btn nav-btn">Memes</button>
+            <button class="about-btn nav-btn">About</button>
         </nav>
     </header>
     <div class="image-gallery">
@@ -44,23 +46,28 @@
             <input type="text" oninput="setText(this.value)" class="panel text-input" placeholder="Text Line" />
             <div class="lines-options flex space-a">
                 <div class="move">
-                    <button class="up">⬆</button>
-                    <button class="down">⬇</button>
+                    <button class="up" onclick="pervLine()">⬆</button>
+                    <button class="down" onclick="nextLine()">⬇</button>
                 </div>
-                <button class="change">🔃</button>
+                <button class="change" onclick="switchBetween()">🔃</button>
                 <button class="add" onclick="newLine()">➕</button>
-                <button class="delete">🧺</button>
+                <button class="delete" onclick="deleteLine()">🧺</button>
             </div>
             <div class="text-options flex">
                 <div class="text-operations">
                     <button class="text-option-btn increase-size" onclick="increaseFont()">A+</button>
                     <button class="text-option-btn decrease-size" onclick="decreaseFont()">A-</button>
-                    <button class="text-option-btn text-color">🌈</button>
+                </div>
+                <div class="collor-operations">
+                    <input type="color" class="text-option-btn color font-color" oninput="setColor(this.value,'font')"
+                        name="font-color" value="#FFFFFF" />
+                    <input type="color" class="text-option-btn color stroke-color"
+                        oninput="setColor(this.value,'stroke')" name="stroke-color" value="#000000" />
                 </div>
                 <div class="align-operations">
-                    <button class="text-option-btn align-left">⏮</button>
-                    <button class="text-option-btn align-center">⏸</button>
-                    <button class="text-option-btn align-right">⏩</button>
+                    <button class="text-option-btn align-left" onclick="setAlign('right')">⏮</button>
+                    <button class="text-option-btn align-center" onclick="setAlign('center')">⏸</button>
+                    <button class="text-option-btn align-right" onclick="setAlign('left')">⏩</button>
                 </div>
             </div>
             <div class="stickers">

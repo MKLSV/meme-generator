@@ -3,6 +3,7 @@
 let gElCanvas
 let gCtx
 let gIdx = 1
+let gId
 let gImgId
 let elImg
 let firstLine = true
@@ -15,7 +16,7 @@ let gLine
 function canvas(image) {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
-    gLine = createLine()
+    createLine()
     drawImage(image)
     addListeners()
     // resizeCanvas()
@@ -41,17 +42,32 @@ function onDown(ev) {
     // Get the ev pos from mouse or touch
     const pos = getEvPos(ev)
     console.log(pos)
-    if (!isLineClicked(pos)) return
-
-    setCircleDrag(true)
+    var line = isLineClicked(pos)
+    console.log(line)
+    if (!line) return
+    gLine = line
+    document.querySelector('.text-input').value = gLine.text
+    setLineDrag(true)
     //Save the pos we start from
-    gStartPos = pos
+    line.direction = pos
     document.body.style.cursor = 'grabbing'
 }
-function onMove(){
-    
+function onMove(ev) {
+    if (!gLine.isDrag) return
+    const pos = getEvPos(ev)
+    var newPos = pos.y + gLine.direction
+    gLine.direction = newPos
+    console.log(gLine.direction)
+    console.log(gLine)
+    renderText()
+    // moveLine(dy)
+
 }
-function onUp(){
+function moveLine(dy) {
+    gLine.direction += dy
+    console.log(gLine.direction)
+}
+function onUp() {
 
 }
 function getEvPos(ev) {
@@ -61,7 +77,7 @@ function getEvPos(ev) {
         y: ev.offsetY,
     }
     // Check if its a touch ev
-    
+
     // if (TOUCH_EVS.includes(ev.type)) {
     //     console.log('ev:', ev)
     //     //soo we will not trigger the mouse ev
@@ -76,16 +92,31 @@ function getEvPos(ev) {
     // }
     return pos
 }
+
+function increaseFont() {
+    gLine.fontSize++
+    setText(gLine.text)
+}
+function decreaseFont() {
+    gLine.fontSize--
+    setText(gLine.text)
+
+}
 function createLine() {
-    return {
+    gLines.push({
         id: gIdx++,
         text: '',
         fontSize: 40,
         textAlign: 'center',
         baseLine: 'middle',
-        moved: false,
-        direction: 30
-    }
+        isDrag: false,
+        direction: 30,
+        stroke: 'black',
+        color: 'white',
+    })
+    gLine = gLines[gLines.length - 1]
+    console.log(gLines)
+    console.log(gLine)
 }
 function drawImage(image) {
     gImgId = image
@@ -102,12 +133,12 @@ function clear() {
     draw()
 }
 function setText(val) {
-    clear()
-    renderText()
     gLine.text = val
+    renderText()
     drawText()
 }
 function renderText() {
+    clear()
     if (gLines) {
         gLines.map(line => drawText(line))
     }
@@ -115,23 +146,28 @@ function renderText() {
 function drawText(line = gLine) {
     gCtx.beginPath()
     gCtx.lineWidth = 2
-    gCtx.strokeStyle = 'black'
-    gCtx.fillStyle = 'white'
+    gCtx.strokeStyle = gLine.stroke
+    gCtx.fillStyle = gLine.color
     gCtx.font = `bold ${gLine.fontSize}px arial`;
     gCtx.textAlign = line.textAlign
     gCtx.textBaseline = line.baseLine
 
-    if (line.id === 1) line.direction = 30
-    else if (line.id === 2) line.direction = gElCanvas.height - 30
+    if (line.id === 1 || !(gLines.some(line => line.id === 1))) {
+        line.id = 1
+        line.direction = 30
+    }
+    else if (line.id === 2 || !(gLines.some(line => line.id === 2))) {
+        line.direction = gElCanvas.height - 30
+        line.id = 2
+    }
     else (line.direction = gElCanvas.height / 2)
     gCtx.fillText(line.text, (gElCanvas.width / 2) - (line.text.length), line.direction, gElCanvas.width - 20) // Draws (fills) a given text at the given (x, y) position.
     gCtx.strokeText(line.text, (gElCanvas.width / 2) - (line.text.length), line.direction, gElCanvas.width - 20) // Draws (strokes) a given text at the given (x, y) position.
 }
 
 function newLine() {
-    gLines.push(gLine)
     document.querySelector('.text-input').value = ''
-    gLine = createLine()
+    createLine()
     drawText()
     // drawRext(x,y)
 }
@@ -148,4 +184,57 @@ function resizeCanvas() {
     const elPanel = document.querySelector('.canvaspanel')
     gElCanvas.width = elContainer.offsetWidth - 540
     gElCanvas.height = elContainer.offsetHeight - 170
+}
+
+
+function pervLine() {
+    if (gLine.id === 1) return
+    gLine = gLines.find(line => line.id === gLine.id - 1)
+    document.querySelector('.text-input').value = gLine.text
+}
+function nextLine() {
+    if (gLine.id === gLines.length) return
+    gLine = gLines.find(line => line.id === gLine.id + 1)
+    document.querySelector('.text-input').value = gLine.text
+}
+
+function deleteLine() {
+    const index = gLines.findIndex(line => line === gLine)
+    gLines.splice(index, 1)
+    gLine = gLines[index - 1]
+    if (gLine) document.querySelector('.text-input').value = gLine.text
+    else {
+        document.querySelector('.text-input').value = ''
+        createLine()
+    }
+    renderText()
+}
+
+function switchBetween() {
+    // console.log(gLines[0].direction)
+    // var first = gLines[0].direction
+    // var second = gLines[gLines.length-1].direction
+    // gLines[0].direction = second
+    // gLines[gLines.length-1].direction = first
+
+    var first = gLines[0].text
+    var second = gLines[gLines.length - 1].text
+    gLines[0].text = second
+    gLines[gLines.length - 1].text = first
+
+    // [gLines[0].direction,gLines[gLines.length-1].direction] = [gLines[gLines.length-1].direction,gLines[0].direction] 
+    // console.log(gLines)
+    // console.log(gLines[0].direction)
+    renderText()
+}
+
+function setAlign(direction) {
+    gLine.textAlign = direction
+    renderText()
+}
+
+function setColor(val,sel){
+    if(sel === 'font') gLine.color = val
+    else ( gLine.stroke = val)
+    renderText()
 }

@@ -1,7 +1,9 @@
 'use strict'
 
 function isLineClicked(clickedPos) {
-    console.log(clickedPos)
-    var clickedLine = gLines.find(line => line.distance + 10 > clickedPos.y && line.distance - 10 < clickedPos.y)
-    return clickedLine
+    return gLines.find(line => line.direction > clickedPos.y - 10 && line.direction < clickedPos.y + 10)
 }   
+function setLineDrag(isDrag) {
+    gLine.isDrag = isDrag
+    console.log(gLines)
+}
