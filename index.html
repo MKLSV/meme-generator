@@ -6,25 +6,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css">
+    <script src="https://kit.fontawesome.com/1c15d1d08d.js" crossorigin="anonymous"></script>
     <title>Meme Generator</title>
 </head>
 
 <body onload="onInit()">
     <header class="header flex">
         <div class="logo">
-             <a href="index.html"> <img src="LOGO/logo3.png" alt="MEMEGENERATOR" width=250px height=35px href="index.html"></a>
-            </div>
+            <a href="index.html"> <img src="LOGO/logo3.png" alt="MEMEGENERATOR" width=250px height=35px
+                    href="index.html"></a>
+        </div>
         <nav class="main-nav">
-            <button class="gallery-btn nav-btn">Gallery</button>
-            <button class="memes-btn nav-btn">Memes</button>
-            <button class="about-btn nav-btn">About</button>
+            <button class="gallery-btn nav-btn" onclick="onGallery()"> Gallery</button>
+            <button class="memes-btn nav-btn" onclick="onMemes()">Memes</button>
+            <button class="about-btn nav-btn" onclick="onAbout()">About</button>
         </nav>
+        <a class="more"><i class=" more-btn fa-solid fa-bars"></i></a>
     </header>
     <div class="image-gallery">
         <div class="search-panel flex">
-            
-                <input class="search" type="text" placeholder="SEARCH..." name="search">
-            
+            <input class="search" type="text" placeholder="SEARCH..." name="search">
             <button class="upload-btn">Upload</button>
             <div class="filter-options">
                 <a class="hashtag">◀</a>
@@ -44,50 +45,59 @@
         <canvas id="my-canvas" height="550" width="550"></canvas>
         <div class="control-box">
             <input type="text" oninput="setText(this.value)" class="panel text-input" placeholder="Text Line" />
-            <div class="lines-options flex space-a">
+            <div class="line-options flex">
+                <button class="line-option-btn add" onclick="newLine()"><i class="fa-solid fa-plus"></i></button>
+                <button class="line-option-btn delete" onclick="deleteLine()"><i class="fa-solid fa-trash"></i></button>
+            </div>
+            <div class="lines-options flex">
                 <div class="move">
-                    <button class="up" onclick="pervLine()">⬆</button>
-                    <button class="down" onclick="nextLine()">⬇</button>
+                    <button class="line-option-btn up" onclick="pervLine()"><i
+                            class="fa-solid fa-arrow-up"></i></button>
+                    <button class="line-option-btn down" onclick="nextLine()"><i
+                            class="fa-solid fa-arrow-down"></i></button>
                 </div>
-                <button class="change" onclick="switchBetween()">🔃</button>
-                <button class="add" onclick="newLine()">➕</button>
-                <button class="delete" onclick="deleteLine()">🧺</button>
+                <button class="line-option-btn change" onclick="switchBetween()"><i
+                        class="fa-solid fa-repeat"></i></button>
             </div>
             <div class="text-options flex">
-                <div class="text-operations">
-                    <button class="text-option-btn increase-size" onclick="increaseFont()">A+</button>
-                    <button class="text-option-btn decrease-size" onclick="decreaseFont()">A-</button>
-                </div>
-                <div class="collor-operations">
-                    <input type="color" class="text-option-btn color font-color" oninput="setColor(this.value,'font')"
-                        name="font-color" value="#FFFFFF" />
-                    <input type="color" class="text-option-btn color stroke-color"
-                        oninput="setColor(this.value,'stroke')" name="stroke-color" value="#000000" />
-                </div>
-                <div class="align-operations">
-                    <button class="text-option-btn align-left" onclick="setAlign('right')">⏮</button>
-                    <button class="text-option-btn align-center" onclick="setAlign('center')">⏸</button>
-                    <button class="text-option-btn align-right" onclick="setAlign('left')">⏩</button>
-                </div>
-            </div>
-            <div class="stickers">
-                <a>😎</a>
-                <a>😮</a>
-                <a>🤯</a>
-                <a>😴</a>
-            </div>
-            <div class="sdc">
-                <a href='#' class="btn save" onclick="onSave(this)">Save</a>
-                <a href='#' class="btn download" onclick="onDownload(this)" download="my-img">Download</a>
-                <a href='#' class="btn clear" onclick="onClear()">Clear</a>
+                <div class="font-operations flex">
+                    <div class="text-operations">
+                        <button class="line-option-btn increase-size" onclick="increaseFont()">A+</button>
+                        <button class="line-option-btn decrease-size" onclick="decreaseFont()">A-</button>
+                    </div>
+                    <div class="collor-operations">
+                        <input type="color" class="line-option-btn color font-color"
+                            oninput="setColor(this.value,'font')" name="font-color" value="#FFFFFF" />
+                        <input type="color" class="line-option-btn color stroke-color"
+                            oninput="setColor(this.value,'stroke')" name="stroke-color" value="#000000" />
+                        </div>
+                    </div>
 
+                <div class="align-operations flex">
+                    <button class="line-option-btn align-left" onclick="setAlign('right')"><i
+                            class="fa-solid fa-align-left"></i></button>
+                    <button class="line-option-btn align-center" onclick="setAlign('center')"><i
+                            class="fa-solid fa-align-center"></i></button>
+                    <button class="line-option-btn align-right" onclick="setAlign('left')"><i
+                            class="fa-solid fa-align-right"></i></button>
+                </div>
             </div>
+
+            <div class="sdc flex">
+                <button class="sdc-btn save" onclick="onSave()">Save</button>
+                <button class="sdc-btn download"><a href='#' class="sdc-btn  download" style=" text-decoration: none; color: #000;" onclick="onDownload(this)" download="my-img">Download</a></button>
+                <button class="sdc-btn clear" onclick="onClear()">Clear</button>
+            </div>
+        </div>
+
+        <div class="saved-memes flex">
         </div>
     </div>
     <script src="js/main.js"></script>
     <script src="js/canvas-controler.js"></script>
     <script src="js/line-control.js"></script>
     <script src="https://kit.fontawesome.com/1c15d1d08d.js" crossorigin="anonymous"></script>
+    <!-- <script src="js/listeners"></script> -->
 
 </body>
 

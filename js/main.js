@@ -25,3 +25,19 @@ function onDownload(elLink) {
     const data = gElCanvas.toDataURL('image.img')
     elLink.href = data
 }
+
+
+function onGallery(){
+    document.querySelector('.image-gallery').style.display = "block"
+    document.querySelector('.canvas-container').style.display = "none"
+    document.querySelector('.text-input').value = ''
+    gLines = []
+    // window.location="index.html"
+}
+
+function onMemes(){
+    document.querySelector('.image-gallery').style.display = "none"
+    document.querySelector('.canvas-container').style.display = "none"
+    document.querySelector('.saved-memes').style.display = "flex"
+    renderMemes()
+}

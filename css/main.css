@@ -1,11 +1,12 @@
 * {
     box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 body {
     margin: 0;
     background: rgb(198, 254, 255);
-    background: linear-gradient(180deg, rgb(167, 143, 255) 0%, rgba(0, 68, 122, 1) 100%);
+    background: linear-gradient(180deg, rgb(183, 171, 226) 0%, rgba(0, 68, 122, 1) 100%);
 }
 
 /* HEADER */
@@ -13,7 +14,7 @@ body {
 header {
     justify-content: space-between;
     background: rgb(241, 165, 0);
-    background: linear-gradient(356deg, rgba(241, 165, 0, 1) 0%, rgb(239, 224, 252) 0%, rgba(0, 220, 255, 1) 100%);
+    background: linear-gradient(356deg, rgba(241, 165, 0, 1) 0%, rgb(255, 255, 255) 0%, rgb(0, 175, 202) 100%);
     padding: 15px;
     border-bottom: solid 1px rgba(64, 64, 64, 0.689);
     /* border-radius: 35px; */
@@ -28,13 +29,18 @@ header {
     flex-direction: row;
     gap: 35px
 }
+.more{
+    display: none;
+    align-self: center;
+    color: #320155;
+    width: 30px;
+}
 
 .nav-btn {
     -webkit-text-stroke-width: 1px;
     font-size: x-large;
     color: #65bcfe;
     background-color: #00c3ff00;
-    ;
     border: none;
     height: 5vh;
 }
@@ -55,11 +61,12 @@ header {
 .search-panel {
     gap: 15px;
     padding: 20px 0;
+    justify-content: center;
 }
 
 .search {
     height: 5vh;
-    width: 35vw;
+    width: 30em;
     background-color: rgb(77, 44, 92);
     border-radius: 10px;
     color: #ffffff;
@@ -68,7 +75,8 @@ header {
 .upload-btn {
     border: none;
     border-radius: 10px;
-    font-size: x-large;
+    width: 5em;
+    font-size: 1.5em;
     font-weight: 600;
     color: rgba(0, 94, 255, 0.6);
     background-color: #cde9ff;
@@ -86,7 +94,7 @@ header {
     display: flex;
     gap: 15px;
     align-items: center;
-    /* justify-content: center; */
+    justify-content: center;
     font-size: x-large;
     font-weight: 550;
     font-family: 'Courier New', Courier, monospace;
@@ -102,6 +110,7 @@ header {
     gap: 20px;
     flex-wrap: wrap;
     padding: 10px 0;
+    justify-content: center;
 }
 
 .image-preview {
@@ -109,6 +118,10 @@ header {
     height: 200px;
     cursor: pointer;
     border-radius: 15px;
+    transition: 0.4s;
+}
+
+.image-preview:hover{
     box-shadow: 1px 2px 8px 1px black;
 }
 
@@ -135,31 +148,75 @@ canvas {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    /* justify-content: space-between; */
-    /* position: fixed; */
     border-radius: 10px;
     padding: 15px;
     background: rgb(241, 165, 0);
-    background: linear-gradient(356deg, rgba(241, 165, 0, 1) 0%, rgb(239, 224, 252) 0%, rgba(0, 220, 255, 1) 100%);
+    background: linear-gradient(356deg, rgba(241, 165, 0, 1) 0%, rgba(193, 178, 206, 0.319) 0%, rgba(0, 221, 255, 0.834) 100%);
     width: 300px;
     box-shadow: 0 1px 2px black;
-}
 
+}
+.line-options{
+    justify-content: space-between;
+}
 .lines-options {
+    justify-content: space-between;
     gap: 20px;
 }
-
+.line-option-btn{
+    border:none;
+    border-radius: 4px;
+    width: 4vw;
+    max-width: 50px;
+    height: 5vh;
+    margin-bottom: 10px;
+}
+.line-option-btn:hover{
+    cursor: pointer;
+    background-color: rgb(167, 167, 167);
+}
 .text-input {
     font-size: x-large;
     width: 100%;
-    background-color: rgb(215, 212, 216);
+    background-color: rgb(240 240 240);
     border-color: #65bcfe;
     border-radius: 5px;
-    color: #ffffff;
+    color: #1f1f1f;
+    margin-bottom: 20px;
     /* border: none; */
 }
-
-
+.text-options{
+    margin-top: 15px;
+    background-color: rgba(52, 52, 52, 0.414);
+    border-radius: 10px;
+    flex-direction: column;
+    padding: 15px;
+}
+.font-operations{
+    justify-content: space-between;
+}
+.align-operations{
+    margin-top: 15px;
+    justify-content: center;
+    gap: 10px;
+}
+.filter-options{}
+.sdc{
+    margin-top: 20px;
+    gap: 10px;
+    justify-content: space-between;
+}
+.sdc-btn{
+    border:none;
+    border-radius: 4px;
+    width: 100%;
+    height: 5vh;
+    margin-bottom: 10px;
+}
+.sdc-btn:hover{
+    cursor: pointer;
+    background-color: rgb(167, 167, 167);
+}
 /* HELPERS */
 .flex {
     display: flex;
@@ -171,4 +228,54 @@ canvas {
 
 .space-b {
     justify-content: space-between;
+}
+
+
+@media screen and (max-width: 907px) {
+    .search-panel{
+        flex-direction: column;
+        align-items: center;
+    }
+    .upload-btn{
+        width: 400px;
+    }
+}
+@media screen and (max-width: 720px) {
+    .canvas-container{
+        flex-direction: column;
+    }
+    .control-box{
+        display: block;
+        align-self: center;
+        width: 80vw;
+    }
+    .text-input{
+        height: 40px;
+    }
+    .line-option-btn{
+        width: 30px;
+    }
+}
+@media screen and (max-width: 620px) {
+    .upload-btn{
+        width: 100px;
+        height: 30px;
+        font-size: large;
+    }
+    .search{
+        width: 200px;
+        height: 30px;
+        font-size: medium;
+    }
+    .filter-options{
+        font-size: medium;
+        flex-wrap: wrap;
+        align-self: center;
+    }
+    .main-nav{display: none;}
+
+    .more{
+        display: block;
+    }
+
 }
